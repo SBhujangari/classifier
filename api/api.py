@@ -20,7 +20,7 @@ import os
 from werkzeug.utils import secure_filename
 import urllib.request
 
-# from peddie import predict_image, predict_sentence
+from peddie import predict_image, predict_sentence
 
 
 UPLOAD_FOLDER = "static/uploads/"
