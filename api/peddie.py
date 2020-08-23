@@ -4,6 +4,7 @@ from skimage.transform import resize
 from transformers import AutoTokenizer, TFAutoModelWithLMHead, TFBertModel, TFDistilBertModel, DistilBertConfig
 import transformers
 import tokenizers
+import skimage.io
 
 # Let's call the image img. It can be given in a list with dimensions (256, 256, 3) or as an image for me to read from a filepath.
 # Ok so inside static/uploads there'll be images
@@ -13,13 +14,13 @@ def predict_image(img):
     img = img / 255.0
     img = resize(img, (256, 256))
 
-    model = tf.keras.models.load_model('/home/stanleyzheng/Desktop/ignitionhacks/saved_models/savedmodelCV/assets')
+    model = tf.saved_model.load('/home/stanleyzheng/Desktop/Learning/classifier/saved_models/savedmodelCV')
     prediction = model(img)
     
     return prediction
 
 class roBERTaClassifier(tf.keras.Model):    
-    def __init__(self, bert: TFBertModel, num_classes: int):
+    def __init__(self, bert: TFDistilBertModel, num_classes: int):
         super().__init__()
         self.bert = bert
         self.classifier = tf.keras.layers.Dense(num_classes, activation='sigmoid')
@@ -55,12 +56,12 @@ def predict_sentence(sentence):
         att=[int(x > 0) for x in i]
         trainattn.append(att)
     loader = tf.data.Dataset.from_tensor_slices((trainenc, trainattn))
-    model = roBERTaClassifier(TFBertModel.from_pretrained("saved_models/somewhere"), 1)
+    model = roBERTaClassifier(TFBertModel.from_pretrained("/home/stanleyzheng/Desktop/Learning/classifier/saved_models/savedmodelNLP"), 1)
     prediction = model.predict(loader)
-    return np.average(prediction)
+    print(prediction[1][0]-0.01)
+    return prediction[1]
 
 # Doom is 1, Animal Crossing is 0
 
-import cv2
-img = cv2.imread('test/animalcrossing.jpg')
-predict_image(img)
+# img = skimage.io.imread('/home/stanleyzheng/Desktop/ignitionhacks/test/animalcrossing.jpg')
+# predict_image(img)
