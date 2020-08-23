@@ -6,6 +6,8 @@ import transformers
 import tokenizers
 
 # Let's call the image img. It can be given in a list with dimensions (256, 256, 3) or as an image for me to read from a filepath.
+# Ok so inside static/uploads there'll be images
+# I'll pass in the image name, but the path will just be static/uploads/{image name that I pass in}
 def predict_image(img):
     img = np.asarray(img)
     img = img / 255.0
