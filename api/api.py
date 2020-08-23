@@ -19,7 +19,8 @@ from wtforms import FileField
 import os
 from werkzeug.utils import secure_filename
 import urllib.request
-from peddie import predict_image, predict_sentence
+
+# from peddie import predict_image, predict_sentence
 
 
 UPLOAD_FOLDER = "static/uploads/"
@@ -30,7 +31,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretkey"
 app.config["UPLOADED_IMAGES_DEST"] = "uploads/images"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+app.config["MAX_CONTENT_LENGTH"] = 0.5 * 1024 * 1024
 
 images = UploadSet("images", IMAGES)
 configure_uploads(app, images)

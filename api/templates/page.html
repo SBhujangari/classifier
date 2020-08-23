@@ -8,18 +8,8 @@
 
 <body>
 	<div class='App container mt-4'>
-		<h4 className='display-4 text-center mb-4'>App</h4>
-		<p>
-			{% with messages = get_flashed_messages() %}
-			{% if messages %}
-			<ul class=flashes>
-				{% for message in messages %}
-				<li>{{ message }}</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			{% endwith %}
-		</p>
+		<h3 className='display-4 text-center mb-4'>App</h3>
+		<h1>{{ msg }}</h1>
 		{% if filename %}
 		<div>
 			<img src="{{ url_for('display_image', filename=filename) }}">
@@ -48,7 +38,6 @@
 			<input type="submit" class="btn btn-primary btn-block" value="Upload" onclick="func()">
 			</p>
 		</form>
-		<h1>{{ msg }}</h1>>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
