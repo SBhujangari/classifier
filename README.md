@@ -2,6 +2,9 @@
 
 ## AI based classification between Doom and Animal Crossing subreddits from images and titles
 
+### Demo
+- https://www.youtube.com/watch?v=3CjeY-TyJSI
+
 ### Requirements
 - Python 3.7.4, NPM
 
