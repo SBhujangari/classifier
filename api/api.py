@@ -1,3 +1,8 @@
+# Mostly working, for the indents I reindented it, probably was a mix of spaces and indents
+# causing the problem. I haven't run it locally with tf yet, but all the parameters are there
+# The below is thrown cause I haven't installed anything yet
+# ModuleNotFoundError: No module named 'tensorflow'
+# I think it tried to automatically run and create pycache, but that can be deleted
 from flask import (
     Flask,
     request,
