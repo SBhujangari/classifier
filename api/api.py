@@ -88,8 +88,13 @@ def upload_image():
         # The text is in request.form['post']
         # I'm not sure if predict_sentence is supposed to be called seperately
         # predict_image(filename)
-        predict_sentence(request.form["post"])
-        return render_template("page.html", filename=filename, request=request)
+        prediction = predict_sentence(request.form["post"])
+        msg = ""
+        if prediction > 0.5:
+            msg = "Doom"
+        else:
+            msg = "Animal Crossing"
+        return render_template("page.html", filename=filename, request=request, msg=msg)
     else:
         flash("We only accept png, jpg, jpeg, gif")
         return redirect(request.url)
