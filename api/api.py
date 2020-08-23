@@ -19,8 +19,7 @@ from wtforms import FileField
 import os
 from werkzeug.utils import secure_filename
 import urllib.request
-
-# from peddie import predict_image
+from peddie import predict_image, predict_sentence
 
 
 UPLOAD_FOLDER = "static/uploads/"
@@ -89,6 +88,7 @@ def upload_image():
         # The text is in request.form['post']
         # I'm not sure if predict_sentence is supposed to be called seperately
         # predict_image(filename)
+        predict_sentence(request.form["post"])
         return render_template("page.html", filename=filename, request=request)
     else:
         flash("We only accept png, jpg, jpeg, gif")
@@ -102,4 +102,3 @@ def display_image(filename):
 
 if __name__ == "__main__":
     app.run()
-
